@@ -1,0 +1,10 @@
+.env
+node_modules/
+node_modules
+.env.development
+.env.production
+.env.local
+.env.development/
+*.local
+
+.vercel

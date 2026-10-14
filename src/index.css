@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/* ========================================
+   THEME
+
+   Pages use these names (bg-surface,
+   text-ink …) instead of fixed hex
+   colours, so switching theme only flips
+   the variables below. The .dark class on
+   <html> is set by utils/theme.ts.
+
+   Colours follow the G.D. website and the
+   staff portal in its design: navy
+   sidebar, brand blue #1266B1 for actions
+   and green #147D64 for success. Blue and
+   white text on it read well in both
+   themes, so they stay fixed.
+   ======================================== */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --surface: #ffffff;
+  --soft: #f4f9fc;
+  --softer: #f8fbfd;
+  --blush: #eaf5ff;
+  --ink: #17324d;
+  --ink-soft: #2f4a64;
+  --muted: #526579;
+  --faint: #8a99a8;
+  --line: #dce7eb;
+  --navy: #133b63;
+  --navy-2: #1b4a78;
+
+  color-scheme: light;
+}
+
+.dark {
+  --surface: #13202e;
+  --soft: #0c1620;
+  --softer: #101b27;
+  --blush: #16304a;
+  --ink: #e6eef6;
+  --ink-soft: #c9d6e3;
+  --muted: #9fb2c5;
+  --faint: #6f8399;
+  --line: #22374c;
+  --navy: #0a1a2b;
+  --navy-2: #16304a;
+
+  /* Native controls (date pickers, select
+     menus, scrollbars) follow along. */
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-soft: var(--soft);
+  --color-softer: var(--softer);
+  --color-blush: var(--blush);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-navy: var(--navy);
+  --color-navy-2: var(--navy-2);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--soft);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Light-only status pills, toned down on dark. */
+.dark .bg-green-100 { background-color: rgb(22 101 52 / 0.35); }
+.dark .text-green-700 { color: #86efac; }
+.dark .bg-gray-100 { background-color: rgb(255 255 255 / 0.08); }
+.dark .text-gray-600,
+.dark .text-gray-500 { color: var(--muted); }
+.dark .bg-red-50,
+.dark .bg-red-100,
+.dark .hover\:bg-red-50:hover { background-color: rgb(220 38 38 / 0.18); }
+.dark .hover\:bg-green-50:hover { background-color: rgb(22 101 52 / 0.25); }
+.dark .text-red-700 { color: #fca5a5; }
+.dark .bg-blue-100 { background-color: rgb(30 64 175 / 0.3); }
+.dark .text-blue-700 { color: #93c5fd; }
+.dark .bg-yellow-100,
+.dark .bg-amber-50 { background-color: rgb(161 98 7 / 0.3); }
+.dark .text-yellow-700,
+.dark .text-amber-800 { color: #fde68a; }
+.dark .bg-violet-50 { background-color: rgb(106 79 191 / 0.25); }
+.dark .text-violet-700 { color: #c4b5fd; }
+
+/* Chart bars grow in once, as in the design. */
+@keyframes grow-y {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .chart-bar {
+    transform-origin: bottom;
+    animation: grow-y 700ms cubic-bezier(.16, 1, .3, 1) backwards;
+  }
+}
